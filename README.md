@@ -6,6 +6,8 @@ This web page is written with html and css. I used the BEM methodology along wit
 
 https://coop0183.github.io/se_project_spots/
 
+"C:\Users\coop0\OneDrive\Screen Recording 2025-04-13 152416.mp4"
+
 
 
 
