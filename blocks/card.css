@@ -26,6 +26,7 @@
     border: none;
     background-color: transparent;
     opacity: 40%;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
