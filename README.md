@@ -6,7 +6,7 @@ This web page is written with HTML and CSS, using the BEM methodology along with
 
 https://coop0183.github.io/se_project_spots/
 
-"C:\Users\coop0\OneDrive\Screen Recording 2025-04-13 152416.mp4"
+https://drive.google.com/file/d/1-pZGM0h5pFPNhi_lBG01v70ivDncWysy/view?usp=sharing
 
 
 
