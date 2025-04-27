@@ -24,7 +24,7 @@
     position: relative;
 }
 
-.modal__close-button {
+.modal__close-btn {
     position: absolute;
     padding: 0;
     top: 32px;
@@ -79,7 +79,7 @@
     color: #2121214d;
 }
 
-.modal__submit-button {
+.modal__submit-btn {
     width: 156px;
     height: 52px;
     padding: 18px 32px;
@@ -102,7 +102,7 @@
         font-size: 20px;
     }
 
-    .modal__submit-button {
+    .modal__submit-btn {
         width: 100%;
     }
 }

@@ -46,7 +46,7 @@
     max-width: 420px;
 }
 
-.profile__edit-button {
+.profile__edit-btn {
     font-weight: 500;
     font-size: 16px;
     line-height: 1;
@@ -62,11 +62,11 @@
     cursor: pointer;
 }
 
-.profile__edit-button:hover {
+.profile__edit-btn:hover {
     opacity: 100%;
 }
 
-.profile__add-button {
+.profile__new-post-btn {
     width: 149px;
     height: 52px;
     font-weight: 500;
@@ -86,7 +86,7 @@
     cursor: pointer;
 }
 
-.profile__add-button:hover {
+.profile__new-post-btn:hover {
     opacity: 0.8;
 }
 
@@ -131,7 +131,7 @@
         align-self: center;
     }
 
-    .profile__add-button {
+    .profile__new-post-btn {
         margin: 0;
         width: 100%;
     }

@@ -29,14 +29,14 @@
                     <div class="profile__column">
                         <h1 class="profile__name">Bessie Coleman</h1>
                         <p class="profile__description">Civil Aviator</p>
-                        <button type="button" class="profile__edit-button">
+                        <button type="button" class="profile__edit-btn">
                             <img
                                 src="./images/pencil.svg"
                                 alt="Pencil Icon"
                             />Edit Profile
                         </button>
                     </div>
-                    <button type="button" class="profile__add-button">
+                    <button type="button" class="profile__new-post-btn">
                         <img src="./images/plus.svg" alt="Plus Icon" />New Post
                     </button>
                 </section>
@@ -52,7 +52,7 @@
                                 <h2 class="card__title">Val Thorens</h2>
                                 <button
                                     type="button"
-                                    class="card__like-button"
+                                    class="card__like-btn"
                                 ></button>
                             </div>
                         </li>
@@ -66,7 +66,7 @@
                                 <h2 class="card__title">Restaurant terrace</h2>
                                 <button
                                     type="button"
-                                    class="card__like-button"
+                                    class="card__like-btn"
                                 ></button>
                             </div>
                         </li>
@@ -80,7 +80,7 @@
                                 <h2 class="card__title">An outdoor cafe</h2>
                                 <button
                                     type="button"
-                                    class="card__like-button"
+                                    class="card__like-btn"
                                 ></button>
                             </div>
                         </li>
@@ -96,7 +96,7 @@
                                 </h2>
                                 <button
                                     type="button"
-                                    class="card__like-button"
+                                    class="card__like-btn"
                                 ></button>
                             </div>
                         </li>
@@ -112,7 +112,7 @@
                                 </h2>
                                 <button
                                     type="button"
-                                    class="card__like-button"
+                                    class="card__like-btn"
                                 ></button>
                             </div>
                         </li>
@@ -126,7 +126,7 @@
                                 <h2 class="card__title">Mountain house</h2>
                                 <button
                                     type="button"
-                                    class="card__like-button"
+                                    class="card__like-btn"
                                 ></button>
                             </div>
                         </li>
@@ -136,9 +136,9 @@
             <footer class="footer">
                 <p class="footer__copyright">2025 &copy; Jon Cooper</p>
             </footer>
-            <div class="modal modal_is-opened">
+            <div class="modal" id="edit-profile-modal">
                 <div class="modal__container">
-                    <button type="button" class="modal__close-button">
+                    <button type="button" class="modal__close-btn">
                         <img src="./images/Close Icon.png" alt="Close Icon" />
                     </button>
                     <h2 class="modal__title">Edit profile</h2>
@@ -164,15 +164,15 @@
                                 placeholder="Describe yourself"
                             />
                         </label>
-                        <button type="submit" class="modal__submit-button">
+                        <button type="submit" class="modal__submit-btn">
                             Save
                         </button>
                     </form>
                 </div>
             </div>
-            <div class="modal modal_is-opened">
+            <div class="modal" id="new-post-modal">
                 <div class="modal__container">
-                    <button type="button" class="modal__close-button">
+                    <button type="button" class="modal__close-btn">
                         <img src="./images/Close Icon.png" alt="Close Icon" />
                     </button>
                     <h2 class="modal__title">New Post</h2>
@@ -195,12 +195,13 @@
                                 placeholder="Type your caption"
                             />
                         </label>
-                        <button type="submit" class="modal__submit-button">
+                        <button type="submit" class="modal__submit-btn">
                             Save
                         </button>
                     </form>
                 </div>
             </div>
         </div>
+        <script src="./scripts/index.js"></script>
     </body>
 </html>
