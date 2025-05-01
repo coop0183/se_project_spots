@@ -20,6 +20,7 @@
 }
 
 .modal__container {
+    box-sizing: border-box;
     max-width: 730px;
     width: 100%;
     border-radius: 8px;
@@ -40,6 +41,10 @@
     background-color: #fff;
     opacity: 40%;
     cursor: pointer;
+}
+
+.modal__close-btn:hover {
+    opacity: 100%;
 }
 
 .modal__title {
@@ -67,6 +72,7 @@
 
 .modal__input {
     display: block;
+    box-sizing: border-box;
     margin: 8px 0 0;
     width: 100%;
     padding: 16px 12px;
@@ -76,7 +82,7 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 1;
-    color: #2121214d;
+    color: #212121;
 }
 
 .modal__input::placeholder {
@@ -95,6 +101,11 @@
     font-weight: 500;
     line-height: 1;
     cursor: pointer;
+    border: none;
+}
+
+.modal__submit-btn:hover {
+    background-color: #3d3d3d;
 }
 
 @media screen and (max-width: 627px) {
