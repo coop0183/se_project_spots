@@ -11,6 +11,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
+}
+
+.modal__type_preview {
+    padding: 0 16px;
 }
 
 .modal_is-opened {
@@ -44,7 +49,7 @@
 }
 
 .modal__close_type_preview {
-    top: 0px;
+    top: 0;
     right: -52.5px;
     width: 40px;
     height: 40px;
@@ -162,6 +167,11 @@
         right: 12px;
     }
 
+    .modal__close_type_preview {
+        right: 0;
+        top: -48px;
+    }
+
     .modal__title {
         font-size: 20px;
     }
@@ -176,6 +186,10 @@
 
     .modal__submit-btn {
         width: 100%;
+    }
+
+    .modal__image {
+        max-width: unset;
     }
 
     .modal__caption {
