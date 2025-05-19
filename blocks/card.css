@@ -28,7 +28,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: 100;
+    z-index: 1;
 }
 
 .card__delete-btn:hover {
@@ -44,7 +44,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: 100;
+    z-index: 1;
 }
 
 .card__title {
@@ -74,7 +74,7 @@
     background-color: transparent;
     opacity: 40%;
     cursor: pointer;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
