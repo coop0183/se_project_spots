@@ -144,8 +144,7 @@ newPostModal.addEventListener("submit", function (evt) {
 
     const cardElement = getCardElement(newCardData);
     cardsList.prepend(cardElement);
-    newPostCaptionInput.value = "";
-    newPostImageInput.value = "";
+    newPostForm.reset();
 
     closeModal(newPostModal);
 });
