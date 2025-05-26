@@ -109,6 +109,25 @@
     color: #2121214d;
 }
 
+.modal__input:hover {
+    border: 1px solid rgba(33, 33, 33);
+}
+
+.modal__input_type_error {
+    border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+.modal__error {
+    display: block;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #f00;
+    opacity: 70%;
+    margin: 8px 0 0;
+}
+
 .modal__submit-btn {
     width: 156px;
     height: 52px;
@@ -126,6 +145,11 @@
 
 .modal__submit-btn:hover {
     background-color: #3d3d3d;
+}
+
+.modal__submit-btn:disabled {
+    background-color: #212121;
+    opacity: 50%;
 }
 
 .modal__image-container {
