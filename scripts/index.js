@@ -29,9 +29,6 @@ const initialCards = [
     },
 ];
 
-const formEl = document.querySelector(".modal__form");
-const inputEl = formEl.querySelector(".modal__input");
-
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -141,11 +138,10 @@ editProfileModal.addEventListener("submit", function (evt) {
     profileDescriptionEl.textContent = newProfileData.description;
 
     closeModal(editProfileModal);
-    resetValidation(
-        editProfileForm,
+    resetValidation(editProfileForm, [
         editProfileNameInput,
-        editProfileDescriptionInput
-    );
+        editProfileDescriptionInput,
+    ]);
 });
 
 newPostModal.addEventListener("submit", function (evt) {
@@ -159,10 +155,10 @@ newPostModal.addEventListener("submit", function (evt) {
     const cardElement = getCardElement(newCardData);
     cardsList.prepend(cardElement);
     newPostForm.reset();
-    disabledBtn(newPostSubmitBtn, settings);
+    disabledBtn(newPostSubmitBtn, config);
 
     closeModal(newPostModal);
-    resetValidation(newPostForm, newPostImageInput, newPostCaptionInput);
+    resetValidation(newPostForm, [newPostImageInput, newPostCaptionInput]);
 });
 
 initialCards.forEach(function (item) {
