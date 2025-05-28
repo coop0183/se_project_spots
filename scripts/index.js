@@ -29,10 +29,13 @@ const initialCards = [
     },
 ];
 
+const formEl = document.querySelector(".modal__form");
+const inputEl = formEl.querySelector(".modal__input");
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
-const editProfileForm = editProfileModal.querySelector(".modal__form");
+const editProfileForm = document.forms["modal__form"];
 const editProfileNameInput = editProfileModal.querySelector(
     "#profile-name-input"
 );
@@ -96,6 +99,11 @@ function getCardElement(data) {
 }
 
 function openModal(modal) {
+    document.addEventListener("keydown", function (evt) {
+        if (evt.key === "Escape") {
+            closeModal(modal);
+        }
+    });
     modal.classList.add("modal_is-opened");
 }
 
@@ -110,16 +118,15 @@ editProfileBtn.addEventListener("click", function () {
     openModal(editProfileModal);
 });
 
-editProfileCloseBtn.addEventListener("click", function () {
-    closeModal(editProfileModal);
+const closeButtons = document.querySelectorAll(".modal__close-btn");
+
+closeButtons.forEach((button) => {
+    const modal = button.closest(".modal");
+    button.addEventListener("click", () => closeModal(modal));
 });
 
 newPostBtn.addEventListener("click", function () {
     openModal(newPostModal);
-});
-
-newPostCloseBtn.addEventListener("click", function () {
-    closeModal(newPostModal);
 });
 
 editProfileModal.addEventListener("submit", function (evt) {
@@ -139,13 +146,6 @@ editProfileModal.addEventListener("submit", function (evt) {
         editProfileNameInput,
         editProfileDescriptionInput
     );
-
-    const closeModalOnEscape = (evt) => {
-        if (evt.key === "Escape") {
-            closeModal(modal);
-            document.removeEventListener("keydown", closeModalOnEscape);
-        }
-    };
 });
 
 newPostModal.addEventListener("submit", function (evt) {
@@ -163,16 +163,15 @@ newPostModal.addEventListener("submit", function (evt) {
 
     closeModal(newPostModal);
     resetValidation(newPostForm, newPostImageInput, newPostCaptionInput);
-
-    const closeModalOnEscape = (evt) => {
-        if (evt.key === "Escape") {
-            closeModal(modal);
-            document.removeEventListener("keydown", closeModalOnEscape);
-        }
-    };
 });
 
 initialCards.forEach(function (item) {
     const cardElement = getCardElement(item);
     cardsList.append(cardElement);
+});
+
+document.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("modal_is-opened")) {
+        closeModal(evt.target);
+    }
 });
