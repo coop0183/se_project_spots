@@ -138,10 +138,11 @@ editProfileModal.addEventListener("submit", function (evt) {
     profileDescriptionEl.textContent = newProfileData.description;
 
     closeModal(editProfileModal);
-    resetValidation(editProfileForm, [
-        editProfileNameInput,
-        editProfileDescriptionInput,
-    ]);
+    resetValidation(
+        editProfileForm,
+        [editProfileNameInput, editProfileDescriptionInput],
+        config
+    );
 });
 
 newPostModal.addEventListener("submit", function (evt) {
@@ -158,7 +159,11 @@ newPostModal.addEventListener("submit", function (evt) {
     disabledBtn(newPostSubmitBtn, config);
 
     closeModal(newPostModal);
-    resetValidation(newPostForm, [newPostImageInput, newPostCaptionInput]);
+    resetValidation(
+        newPostForm,
+        [newPostImageInput, newPostCaptionInput],
+        config
+    );
 });
 
 initialCards.forEach(function (item) {

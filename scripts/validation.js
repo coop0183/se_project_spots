@@ -1,13 +1,15 @@
 const showInputError = (formEl, inputEl, config) => {
     const errorEl = formEl.querySelector(`#${inputEl.id}-error`);
     errorEl.textContent = inputEl.validationMessage;
-    errorEl.classList.add(config.errorClass, config.inputErrorClass);
+    errorEl.classList.add(config.errorClass);
+    inputEl.classList.add(config.inputErrorClass);
 };
 
 const hideInputError = (formEl, inputEl, config) => {
     const errorEl = formEl.querySelector(`#${inputEl.id}-error`);
     errorEl.textContent = "";
-    errorEl.classList.remove(config.errorClass, config.inputErrorClass);
+    errorEl.classList.remove(config.errorClass);
+    inputEl.classList.remove(config.inputErrorClass);
 };
 
 const checkInputValidity = (formEl, inputEl, config) => {
