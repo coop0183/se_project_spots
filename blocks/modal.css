@@ -126,6 +126,11 @@
     color: #f00;
     opacity: 70%;
     margin: 8px 0 0;
+    visibility: hidden;
+}
+
+.modal__error_visible {
+    visibility: visible;
 }
 
 .modal__submit-btn {
