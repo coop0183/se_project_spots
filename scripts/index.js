@@ -103,10 +103,12 @@ function openModal(modal) {
         }
     };
     document.addEventListener("keydown", escHandler);
+    document.addEventListener("click", overlayClickListener);
 }
 
 function closeModal(modal) {
     modal.classList.remove("modal_is-opened");
+    document.removeEventListener("click", overlayClickListener);
 }
 
 editProfileBtn.addEventListener("click", function () {
@@ -170,8 +172,8 @@ initialCards.forEach((item) => {
     cardsList.append(cardElement);
 });
 
-document.addEventListener("click", function (evt) {
-    if (evt.target.classList.contains("modal_is-opened")) {
-        closeModal(evt.target);
+const overlayClickListener = (evt) => {
+    if (evt.target.classList.contains("modal")) {
+        closeModal(document.querySelector(".modal_is-opened"));
     }
-});
+};
