@@ -94,26 +94,35 @@ function getCardElement(data) {
     return cardElement;
 }
 
+function handleEscape(evt) {
+    if (evt.key === "Escape") {
+        const openedPopup = document.querySelector(".modal_is-opened");
+        if (openedPopup) {
+            closeModal(openedPopup);
+        }
+    }
+}
+
 function openModal(modal) {
     modal.classList.add("modal_is-opened");
-    const escHandler = (evt) => {
-        if (evt.key === "Escape") {
-            closeModal(modal);
-            document.removeEventListener("keydown", escHandler);
-        }
-    };
-    document.addEventListener("keydown", escHandler);
+    document.addEventListener("keydown", handleEscape);
     document.addEventListener("click", overlayClickListener);
 }
 
 function closeModal(modal) {
     modal.classList.remove("modal_is-opened");
     document.removeEventListener("click", overlayClickListener);
+    document.removeEventListener("keydown", handleEscape);
 }
 
 editProfileBtn.addEventListener("click", function () {
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+    resetValidation(
+        editProfileForm,
+        [editProfileNameInput, editProfileDescriptionInput],
+        config
+    );
 
     openModal(editProfileModal);
 });
@@ -139,11 +148,6 @@ editProfileModal.addEventListener("submit", function (evt) {
     profileDescriptionEl.textContent = newProfileData.description;
 
     closeModal(editProfileModal);
-    resetValidation(
-        editProfileForm,
-        [editProfileNameInput, editProfileDescriptionInput],
-        config
-    );
 });
 
 newPostModal.addEventListener("submit", function (evt) {
@@ -160,11 +164,6 @@ newPostModal.addEventListener("submit", function (evt) {
     disabledBtn(newPostSubmitBtn, config);
 
     closeModal(newPostModal);
-    resetValidation(
-        newPostForm,
-        [newPostImageInput, newPostCaptionInput],
-        config
-    );
 });
 
 initialCards.forEach((item) => {
@@ -174,6 +173,6 @@ initialCards.forEach((item) => {
 
 const overlayClickListener = (evt) => {
     if (evt.target.classList.contains("modal")) {
-        closeModal(document.querySelector(".modal_is-opened"));
+        closeModal(evt.target);
     }
 };
