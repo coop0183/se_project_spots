@@ -13,30 +13,33 @@
         <div class="page">
             <header class="header">
                 <img
-                    src="./images/logo.svg"
-                    alt="spot logo"
                     class="header__logo"
+                    src="<%= require('./images/logo.svg')%>"
+                    alt="spot logo"
                 />
             </header>
             <main class="content">
                 <section class="profile page__section">
                     <img
-                        src="./images/avatar.jpg"
-                        alt="Bessie Coleman"
                         class="profile__avatar"
+                        src="<%= require('./images/avatar.jpg')%>"
+                        alt="Bessie Coleman"
                     />
                     <div class="profile__column">
                         <h1 class="profile__name">Bessie Coleman</h1>
                         <p class="profile__description">Civil Aviator</p>
                         <button type="button" class="profile__edit-btn">
                             <img
-                                src="./images/pencil.svg"
+                                src="<%= require('./images/pencil.svg')%>"
                                 alt="Pencil Icon"
                             />Edit Profile
                         </button>
                     </div>
                     <button type="button" class="profile__new-post-btn">
-                        <img src="./images/plus.svg" alt="Plus Icon" />New Post
+                        <img
+                            src="<%= require('./images/plus.svg')%>"
+                            alt="Plus Icon"
+                        />New Post
                     </button>
                 </section>
                 <section class="cards page__section">
@@ -66,7 +69,10 @@
             <div class="modal" id="edit-profile-modal">
                 <div class="modal__container">
                     <button type="button" class="modal__close-btn">
-                        <img src="./images/close-icon.svg" alt="Close Icon" />
+                        <img
+                            src="<%= require('./images/close-icon.svg')%>"
+                            alt="Close Icon"
+                        />
                     </button>
                     <h2 class="modal__title">Edit profile</h2>
                     <form class="modal__form" novalidate>
@@ -120,7 +126,10 @@
             <div class="modal" id="new-post-modal">
                 <div class="modal__container">
                     <button type="button" class="modal__close-btn">
-                        <img src="./images/close-icon.svg" alt="Close Icon" />
+                        <img
+                            src="<%= require('./images/close-icon.svg')%>"
+                            alt="Close Icon"
+                        />
                     </button>
                     <h2 class="modal__title">New Post</h2>
                     <form class="modal__form" novalidate>
@@ -171,7 +180,10 @@
                         type="button"
                         class="modal__close-btn modal__close-btn_type_preview"
                     >
-                        <img src="./images/close-icon2.svg" alt="Close Icon" />
+                        <img
+                            src="<%=require('./images/close-icon2.svg')%>"
+                            alt="Close Icon"
+                        />
                     </button>
                     <img src="#" alt="" class="modal__image" />
                     <p class="modal__caption"></p>
