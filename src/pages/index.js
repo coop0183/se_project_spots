@@ -1,3 +1,4 @@
+import "../pages/index.css";
 import {
     enableValidation,
     validationConfig,
@@ -7,7 +8,9 @@ import {
     checkInputValidity,
     showInputError,
     hideInputError,
-} from "./validation.js";
+    hasInvalidInput,
+    setEventListeners,
+} from "../scripts/validation.js";
 
 const initialCards = [
     {
