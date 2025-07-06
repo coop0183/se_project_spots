@@ -11,6 +11,7 @@ import {
     hasInvalidInput,
     setEventListeners,
 } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
 const initialCards = [
     {
@@ -42,6 +43,23 @@ const initialCards = [
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
     },
 ];
+
+const api = new Api({
+    baseUrl: "https://around-api.en.tripleten-services.com/v1",
+    headers: {
+        authorization: "7ca7dbe9-72ae-4982-a982-e599cd27fed8",
+        "Content-Type": "application/json",
+    },
+});
+
+api.getInitialCards()
+    .then((cards) => {
+        cards.forEach((item) => {
+            const cardElement = getCardElement(item);
+            cardsList.append(cardElement);
+        });
+    })
+    .catch(console.error);
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -178,11 +196,6 @@ newPostModal.addEventListener("submit", function (evt) {
     disabledBtn(newPostSubmitBtn, validationConfig);
 
     closeModal(newPostModal);
-});
-
-initialCards.forEach((item) => {
-    const cardElement = getCardElement(item);
-    cardsList.append(cardElement);
 });
 
 const overlayClickListener = (evt) => {
