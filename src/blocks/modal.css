@@ -185,6 +185,30 @@
     top: calc(100% + 10px);
 }
 
+.modal__delete-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: #ff6565;
+    cursor: pointer;
+    border-radius: 8px;
+    gap: 8px;
+}
+
+.modal__cancel-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    border-radius: 8px;
+    gap: 8px;
+}
+
 @media screen and (max-width: 627px) {
     .modal__container {
         padding: 22px 12px 12px;
