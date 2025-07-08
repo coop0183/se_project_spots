@@ -66,6 +66,15 @@ api.getAppInfo()
     })
     .catch(console.error);
 
+api.getInitialCards()
+    .then((cards) => {
+        cards.forEach((item) => {
+            const cardElement = getCardElement(item);
+            cardsList.append(cardElement);
+        });
+    })
+    .catch(console.error);
+
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
@@ -82,6 +91,10 @@ const newPostModal = document.querySelector("#new-post-modal");
 const newPostSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostForm = newPostModal.querySelector(".modal__form");
+const newPostImageInput = newPostModal.querySelector("#card-image-input");
+const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
+const newPostImageEl = newPostModal.querySelector(".modal__image");
+const newPostCaptionEl = newPostModal.querySelector(".modal__caption");
 
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
@@ -93,15 +106,12 @@ const profileAvatarEl = document.querySelector(".profile__avatar");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
-const cancelModalBtn = deleteModal.querySelector(".modal__cancel-btn");
-const deleteModalBtn = deleteModal.querySelector(".modal__delete-btn");
+const cancelModalBtn = deleteModal.querySelector("#modal__cancel-btn");
+const deleteModalBtn = deleteModal.querySelector("#modal__delete-btn");
 const deleteForm = deleteModal.querySelector(".modal__form");
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
-
-const newPostImageInput = newPostModal.querySelector("#card-image-input");
-const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -169,8 +179,6 @@ function handleDeleteSubmit(evt) {
         .catch(console.error)
         .finally(() => {
             submitBtn.textContent = "Delete";
-            selectedCard = null;
-            selectedCardId = null;
         });
 }
 

@@ -15,7 +15,7 @@ class Api {
             if (res.ok) {
                 return res.json();
             }
-            Promise.reject(`Error: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         });
     }
 
@@ -26,7 +26,7 @@ class Api {
             if (res.ok) {
                 return res.json();
             }
-            Promise.reject(`Error: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         });
     }
 
@@ -42,7 +42,7 @@ class Api {
             if (res.ok) {
                 return res.json();
             }
-            Promise.reject(`Error: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         });
     }
 
@@ -57,7 +57,7 @@ class Api {
             if (res.ok) {
                 return res.json();
             }
-            Promise.reject(`Error: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         });
     }
 
@@ -73,35 +73,33 @@ class Api {
             if (res.ok) {
                 return res.json();
             }
-            Promise.reject(`Error: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         });
     }
 
-    deleteCard(id) {
-        return fetch(`${this._baseUrl}/cards/${id}`, {
+    deleteCard(_id) {
+        return fetch(`${this._baseUrl}/cards/${_id}`, {
             method: "DELETE",
             headers: this._headers,
         }).then((res) => {
             if (res.ok) {
                 return res.json();
             }
-            Promise.reject(`Error: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         });
     }
 
-    toggleLikeCard(id, isLiked) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    toggleLikeCard(_id, isLiked) {
+        return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
             method: isLiked ? "DELETE" : "PUT",
             headers: this._headers,
         }).then((res) => {
             if (res.ok) {
                 return res.json();
             }
-            Promise.reject(`Error: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         });
     }
-
-    // other methods for working with the API
 }
 
 export default Api;

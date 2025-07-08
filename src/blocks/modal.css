@@ -185,28 +185,47 @@
     top: calc(100% + 10px);
 }
 
-.modal__delete-btn {
+#delete-form {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    position: relative;
-    background-color: #ff6565;
-    cursor: pointer;
-    border-radius: 8px;
+    justify-content: center;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
-.modal__cancel-btn {
+#modal__delete-btn {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     position: relative;
-    background-color: #e0e0e0;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff6565;
     cursor: pointer;
+    width: 156px;
+    height: 52px;
     border-radius: 8px;
-    gap: 8px;
+}
+
+#modal__cancel-btn {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border: #212121 1px solid;
+    background-color: #fff;
+    cursor: pointer;
+    width: 156px;
+    height: 52px;
+    border-radius: 8px;
+}
+
+#modal__delete-btn:hover {
+    background-color: #ff3333;
+}
+
+#modal__cancel-btn:hover {
+    background-color: #212121;
+    color: #fff;
 }
 
 @media screen and (max-width: 627px) {
