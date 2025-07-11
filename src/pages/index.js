@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import "../pages/index.css";
 import {
     enableValidation,
@@ -54,20 +55,10 @@ const api = new Api({
 
 api.getAppInfo()
     .then(([cards, data]) => {
-        cards.forEach((item) => {
-            const cardElement = getCardElement(item);
-            cardsList.append(cardElement);
-        });
-        data = {
-            name: "Placeholder Name",
-            about: "Placeholder Description",
-            avatar: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/8-photo-by-ali-morshedlou-from-pexels.jpg",
-        };
-    })
-    .catch(console.error);
+        profileNameEl.textContent = data.name;
+        profileDescriptionEl.textContent = data.about;
+        profileAvatarEl.src = data.avatar;
 
-api.getInitialCards()
-    .then((cards) => {
         cards.forEach((item) => {
             const cardElement = getCardElement(item);
             cardsList.append(cardElement);
@@ -93,8 +84,8 @@ const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostForm = newPostModal.querySelector(".modal__form");
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#card-caption-input");
-const newPostImageEl = newPostModal.querySelector(".modal__image");
-const newPostCaptionEl = newPostModal.querySelector(".modal__caption");
+const newPostImageEl = newPostModal.querySelector(".card__image");
+const newPostCaptionEl = newPostModal.querySelector(".card__title");
 
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const avatarModal = document.querySelector("#avatar-modal");
@@ -137,25 +128,22 @@ function getCardElement(data) {
     cardImageEl.src = data.link;
     cardImageEl.alt = data.name;
     cardTitleEl.textContent = data.name;
+    cardElement.id = data._id;
 
-    const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-    cardLikeBtnEl.addEventListener("click", (evt) =>
-        handleLikeCard(evt, data._id)
+    const isLiked = data.isLiked;
+    const likeBtn = cardElement.querySelector(".card__like-btn");
+    if (isLiked) {
+        likeBtn.classList.add("card__like-btn_active");
+    }
+
+    likeBtn.addEventListener("click", (evt) =>
+        handleLikeCard(evt, data._id, cardElement)
     );
 
-    const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
-    cardDeleteBtnEl.addEventListener("click", () =>
+    const deleteBtn = cardElement.querySelector(".card__delete-btn");
+    deleteBtn.addEventListener("click", () =>
         handleDeleteCard(cardElement, data._id)
     );
-
-    deleteModalBtn.addEventListener("click", () => {
-        cardElement.remove();
-        closeModal(deleteModal);
-    });
-
-    cancelModalBtn.addEventListener("click", () => {
-        closeModal(deleteModal);
-    });
 
     cardImageEl.addEventListener("click", () => {
         previewModalImageEl.src = data.link;
@@ -188,13 +176,15 @@ function handleDeleteCard(cardElement, cardId) {
     openModal(deleteModal);
 }
 
-function handleLikeCard(evt, cardId) {
+function handleLikeCard(evt, cardId, cardElement) {
     const isLiked = evt.target.classList.contains("card__like-btn_active");
+
     api.toggleLikeCard(cardId, isLiked)
         .then((data) => {
             if (data) {
                 evt.target.classList.toggle("card__like-btn_active");
             }
+            localStorage.setItem("likedCard", cardId);
         })
         .catch(console.error);
 }
@@ -262,7 +252,7 @@ editProfileModal.addEventListener("submit", function (evt) {
             }
             closeModal(editProfileModal);
             editProfileForm.reset();
-            disabledBtn(editProfileSubmitBtn, validationConfig);
+            disabledBtn(editProfileBtn, validationConfig);
         })
         .catch(console.error)
         .finally(() => {
@@ -271,8 +261,7 @@ editProfileModal.addEventListener("submit", function (evt) {
 });
 
 newPostModal.addEventListener("submit", function (evt) {
-    evt.preventDefault(evt);
-
+    evt.preventDefault();
     const submitBtn = evt.submitter;
     submitBtn.textContent = "Saving...";
 
@@ -282,8 +271,8 @@ newPostModal.addEventListener("submit", function (evt) {
     })
         .then((data) => {
             if (data) {
-                newPostCaptionEl.textContent = data.name;
-                newPostImageEl.textContent = data.link;
+                const cardElement = getCardElement(data);
+                cardsList.prepend(cardElement);
             }
             closeModal(newPostModal);
             newPostForm.reset();
