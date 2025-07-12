@@ -53,11 +53,14 @@ const api = new Api({
     },
 });
 
+const profileAvatarEl = document.querySelector(".profile__avatar");
+
 api.getAppInfo()
     .then(([cards, data]) => {
+        console.log(data);
+        // profileAvatarEl.src = data.avatar;
         profileNameEl.textContent = data.name;
         profileDescriptionEl.textContent = data.about;
-        profileAvatarEl.src = data.avatar;
 
         cards.forEach((item) => {
             const cardElement = getCardElement(item);
@@ -93,7 +96,6 @@ const avatarModalSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
 const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
 const avatarModalForm = avatarModal.querySelector(".modal__form");
 const avatarImageInput = avatarModal.querySelector("#profile-avatar-input");
-const profileAvatarEl = document.querySelector(".profile__avatar");
 
 const deleteModal = document.querySelector("#delete-modal");
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
@@ -144,6 +146,9 @@ function getCardElement(data) {
     deleteBtn.addEventListener("click", () =>
         handleDeleteCard(cardElement, data._id)
     );
+
+    const cancelModalBtn = deleteModal.querySelector("#modal__cancel-btn");
+    cancelModalBtn.addEventListener("click", () => closeModal(deleteModal));
 
     cardImageEl.addEventListener("click", () => {
         previewModalImageEl.src = data.link;
