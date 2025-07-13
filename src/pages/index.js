@@ -58,7 +58,7 @@ const profileAvatarEl = document.querySelector(".profile__avatar");
 api.getAppInfo()
     .then(([cards, data]) => {
         console.log(data);
-        // profileAvatarEl.src = data.avatar;
+        //profileAvatarEl.src = data.avatar;
         profileNameEl.textContent = data.name;
         profileDescriptionEl.textContent = data.about;
 
@@ -300,6 +300,7 @@ avatarModal.addEventListener("submit", function (evt) {
             if (data) {
                 profileAvatarEl.src = data.avatar;
             }
+            localStorage.setItem("userAvatar", data.avatar);
             closeModal(avatarModal);
             avatarModalForm.reset();
         })
