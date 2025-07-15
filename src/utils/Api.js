@@ -4,6 +4,16 @@ class Api {
         this._headers = headers;
     }
 
+    _request(url, options = {}) {
+        return fetch(url, {
+            ...options,
+            headers: {
+                ...this._headers,
+                "Content-Type": "application/json",
+            },
+        }).then(this._checkResponse);
+    }
+
     _checkResponse(res) {
         if (res.ok) {
             return res.json();

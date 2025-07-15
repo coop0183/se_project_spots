@@ -1,5 +1,4 @@
 import defaultAvatar from "../images/avatar.jpg";
-import { data } from "autoprefixer";
 import "../pages/index.css";
 import {
     enableValidation,
@@ -58,13 +57,12 @@ const profileAvatarEl = document.querySelector(".profile__avatar");
 const storedAvatar = localStorage.getItem("userAvatar");
 
 api.getAppInfo()
-    .then(([cards, data]) => {
+    .then(([cards, data, defaultAvatar]) => {
         console.log(data);
 
-        if (storedAvatar) {
-            profileAvatarEl.src = storedAvatar;
-        } else if (data.avatar) {
-            profileAvatarEl.src = data.avatar;
+        profileAvatarEl.src = storedAvatar || data.avatar || defaultAvatar;
+
+        if (data.avatar) {
             localStorage.setItem("userAvatar", data.avatar);
         }
 
@@ -304,17 +302,22 @@ avatarModal.addEventListener("submit", function (evt) {
     const submitBtn = evt.submitter;
     submitBtn.textContent = "Saving...";
 
-    api.editAvatarInfo(avatarImageInput.value).then((data) => {
-        if (data?.avatar) {
-            profileAvatarEl.src = data.avatar;
-            localStorage.setItem("userAvatar", data.avatar);
-        } else {
-            profileAvatarEl.src = defaultAvatar;
-            localStorage.removeItem("userAvatar");
-        }
-        closeModal(avatarModal);
-        avatarModalForm.reset();
-    });
+    api.editAvatarInfo(avatarImageInput.value)
+        .then((data) => {
+            if (data?.avatar) {
+                profileAvatarEl.src = data.avatar;
+                localStorage.setItem("userAvatar", data.avatar);
+            } else {
+                profileAvatarEl.src = defaultAvatar;
+                localStorage.removeItem("userAvatar");
+            }
+            closeModal(avatarModal);
+            avatarModalForm.reset();
+        })
+        .catch(console.error)
+        .finally(() => {
+            submitBtn.textContent = "Save";
+        });
 });
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
