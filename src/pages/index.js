@@ -1,4 +1,3 @@
-import defaultAvatar from "../images/avatar.jpg";
 import "../pages/index.css";
 import {
     enableValidation,
@@ -13,6 +12,7 @@ import {
     setEventListeners,
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
+import { renderLoading, handleSubmit } from "../utils/utils.js";
 
 const initialCards = [
     {
@@ -54,17 +54,12 @@ const api = new Api({
 });
 
 const profileAvatarEl = document.querySelector(".profile__avatar");
-const storedAvatar = localStorage.getItem("userAvatar");
 
 api.getAppInfo()
-    .then(([cards, data, defaultAvatar]) => {
+    .then(([cards, data]) => {
         console.log(data);
 
-        profileAvatarEl.src = storedAvatar || data.avatar || defaultAvatar;
-
-        if (data.avatar) {
-            localStorage.setItem("userAvatar", data.avatar);
-        }
+        profileAvatarEl.src = data.avatar;
 
         profileNameEl.textContent = data.name;
         profileDescriptionEl.textContent = data.about;
@@ -196,7 +191,6 @@ function handleLikeCard(evt, cardId, cardElement) {
             if (data) {
                 evt.target.classList.toggle("card__like-btn_active");
             }
-            localStorage.setItem("likedCard", cardId);
         })
         .catch(console.error);
 }
@@ -313,6 +307,7 @@ avatarModal.addEventListener("submit", function (evt) {
             }
             closeModal(avatarModal);
             avatarModalForm.reset();
+            disabledBtn(avatarModalSubmitBtn, validationConfig);
         })
         .catch(console.error)
         .finally(() => {
