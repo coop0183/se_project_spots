@@ -257,8 +257,7 @@ editProfileModal.addEventListener("submit", function (evt) {
                 profileDescriptionEl.textContent = data.about;
             }
             closeModal(editProfileModal);
-            editProfileForm.reset();
-            disabledBtn(editProfileBtn, validationConfig);
+            disabledBtn(submitBtn, validationConfig);
         })
         .catch(console.error)
         .finally(() => {
